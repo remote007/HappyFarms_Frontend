@@ -17,7 +17,7 @@ constructor(props) {
 
 componentDidMount() {
 	var  self  =  this;
-	cityClass.getCity.then(function (result) {
+	cityClass.getCities().then(function (result) {
 		console.log(result);
 		self.setState({ cities:  result.data, nextPageURL:  result.nextlink})
 	});
@@ -36,7 +36,7 @@ handleDelete(e,pk){
 nextPage(){
 	var  self  =  this;
 	console.log(this.state.nextPageURL);		
-	cityClass.getCustomersByURL(this.state.nextPageURL).then((result) => {
+	cityClass.getCitiesByURL(this.state.nextPageURL).then((result) => {
 		self.setState({ cities:  result.data, nextPageURL:  result.nextlink})
 	});
 }
@@ -48,7 +48,7 @@ render() {
 			<thead  key="thead">
 			<tr>
 				<th>#</th>
-				<th>First Name</th>
+				<th>Name</th>
 			</tr>
 			</thead>
 			<tbody>
