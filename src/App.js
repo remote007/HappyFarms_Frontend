@@ -18,7 +18,7 @@ export default class App extends Component {
   }
 
 fetchData = async () => {
-        axios.get('http://127.0.0.1:8000/api/city_no/'+this.state.city+'/').then(res => {
+        axios.get('http://127.0.0.1:8000/api/city_envcomponents/'+this.state.city+'/').then(res => {
         var data = res.data;
         console.log(data.so2_list);
         this.setState({series1_bar: [{ data:data.co_list }]} );
