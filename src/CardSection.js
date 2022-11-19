@@ -6,7 +6,7 @@ export default class
     return (
       <div>
         <h1>
-            {this.props.Data}
+            {this.props.componentData}
         </h1>
       </div>
     )
