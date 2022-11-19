@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import Chart from "react-apexcharts";
 
@@ -33,7 +32,7 @@ class ChartSection extends Component {
             <Chart
               options={this.state.options}
               series={this.state.series}
-              type="line"
+              type={this.props.type}
               width="500"
             />
           </div>
