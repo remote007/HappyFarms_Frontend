@@ -42,7 +42,7 @@ export class CardSection extends Component {
                     <div className="card text-white text-center  m-3"
                         style={{ width: "38rem", backgroundColor: "rgb(43, 43, 43)", marginTop: "0px !important" }}>
                         <div className="card-body">
-                            <h6 className="card-title" style={{ fontFamily: 'NHaasGroteskDSPro-65Md' }}></h6>
+                            <h6 className="card-title" style={{ fontFamily: 'NHaasGroteskDSPro-65Md' }}>Ammonia</h6>
                             <p className="card-text fw-bold fs-5" style={{ color: "#fcdf03" }} >
                             <ChartSection type="area" series = {this.props.series4_line} option={this.props.option4}/> 
                             </p>
