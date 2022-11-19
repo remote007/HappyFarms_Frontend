@@ -45,9 +45,8 @@
 // export default App;
 import axios from 'axios';
 import React, { Component } from 'react';
-// import CardSection from './components/CardSection';
-// import ChartSection from './components/ChartSection';
-// import Header from './components/Header';
+import CardSection from './CardSection';
+import Header from './Header';
 
 export default class App extends Component {
   constructor() {
@@ -72,9 +71,11 @@ export default class App extends Component {
   render() {
     return (
         <>
+         <Header/>
          <ul>
-            {this.state.Data.map(d => (<li key={d.id}>{d.city} , {d.co}</li>))} 
+            {this.state.Data.map(d => (<li key={d.id}>{d.city} , {d.co} <CardSection componentData={this.state.Data}/></li>))} 
             </ul>
+            {/* <CardSection componentData={this.state.Data}/> */}
         </>
     )
 }
