@@ -58,7 +58,7 @@ export default class App extends Component {
     this.fetchData = this.fetchData.bind(this);
   }
   fetchData = async () => {
-    axios.get('http://127.0.0.1:8000/api/cities/').then(res => {
+    axios.get('http://127.0.0.1:8000/api/components/').then(res => {
         var data = res.data
         console.log(data.data[0]);
         this.setState({Data : data.data})
@@ -73,7 +73,7 @@ export default class App extends Component {
     return (
         <>
          <ul>
-            {this.state.Data.map(d => (<li key={d.pk}>{d.name}</li>))} 
+            {this.state.Data.map(d => (<li key={d.id}>{d.city} , {d.co}</li>))} 
             </ul>
         </>
     )
