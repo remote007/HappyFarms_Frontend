@@ -1,81 +1,74 @@
-// import  React, { Component } from  'react';
-// import { BrowserRouter } from  'react-router-dom'
-// import { Routes, Route, Link } from  'react-router-dom'
-// import  CityList  from  './CitiesList'
-// import  CityCreateUpdate  from  './CityCreateUpdate'
-// import './App.css';
-
-// const BaseLayout = () => (
-//   <div className="container-fluid">
-// <nav className="navbar navbar-expand-lg navbar-light bg-light">
-//   <a className="navbar-brand" href="#">Django React Demo</a>
-//   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-//     <span className="navbar-toggler-icon"></span>
-//   </button>
-//   <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-//     <div className="navbar-nav">
-//       <a className="nav-item nav-link" href="/">CITY</a>
-//       <a className="nav-item nav-link" href="/city">CREATE CITY</a>
-      
-//     </div>
-//   </div>
-// </nav>  
-
-//     <div className="content">
-//       <Routes>
-//       <Route path="/" exact element={<CityList/>} ></Route>
-//       <Route path="/city/:pk" exact  element={<CityCreateUpdate/>} ></Route>
-//       <Route path="/city/" exact element={<CityCreateUpdate/>} ></Route>
-//       </Routes>
-//     </div>
-
-//   </div>
-// )
-
-// class App extends Component {
-//   render() {
-//     return (
-//       <BrowserRouter>
-//         <BaseLayout/>
-//       </BrowserRouter>
-//     );
-//   }
-// }
-
-// export default App;
 import axios from 'axios';
 import React, { Component } from 'react';
-import CardSection from './CardSection';
-import Header from './Header';
+import CardSection from './components/CardSection';
+import Header from './components/Header';
 
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      Data: []
-    }
-    this.fetchData = this.fetchData.bind(this);
+      city : "Paris",
+      option1 : {theme:{palette: 'palette2' }},
+      option2 : {theme:{palette: 'palette7' }},
+      option3 : {theme:{palette: 'palette8' }},
+      option4 : {theme:{palette: 'palette5' }},
+      series1_bar : [{data:[]}],
+      series2_line : [{data:[]}],
+      series3_area : [{data:[]}],
+      series4_line : [{data:[]}]
+    };
   }
-  fetchData = async () => {
-    axios.get('http://127.0.0.1:8000/api/components/').then(res => {
-        var data = res.data
-        console.log(data.data[0]);
-        this.setState({Data : data.data})
+
+fetchData = async () => {
+        axios.get('http://127.0.0.1:8000/api/city_envcomponents/'+this.state.city+'/').then(res => {
+        var data = res.data;
+        console.log(data.nh3_list);
+        this.setState({series1_bar: [{ data:data.co_list }]} );
+        this.setState({series2_line: [{ data:data.no_list }]} );
+        this.setState({series3_area: [{ data:data.so2_list }]} );
+        this.setState({series4_line: [{ data:data.nh3_list }]} );
     })
   }
 
-  componentDidMount() {
+  handleSubmit = async (event)=>{
+    console.log(event.target.value)
+    if (event.target.value==="new"){
+      window.open("http://127.0.0.1:8000/", "_blank")
+    }
+    else{
+      await this.setState({
+        city: event.target.value, 
+        option1 : this.state.option1,
+        option2 : this.state.option2,
+        option3 : this.state.option3,
+        option4 : this.state.option4,
+        series1_bar : this.state.series1_bar,
+        series2_line : this.state.series2_line,
+        series3_area : this.state.series3_area,
+        series4_line : this.state.series4_line
+      })
+      this.fetchData()
+    }
+  }
+
+componentDidMount() {
     this.fetchData()
   }
 
   render() {
     return (
         <>
-         <Header/>
-         <ul>
-            {this.state.Data.map(d => (<li key={d.id}>{d.city} , {d.co} <CardSection componentData={this.state.Data}/></li>))} 
-            </ul>
-            {/* <CardSection componentData={this.state.Data}/> */}
+          <Header handle_submit={this.handleSubmit}/>
+          <CardSection 
+               option1 = {this.state.option1}
+               option2 = {this.state.option2}
+               option3 = {this.state.option3}
+               option4 = {this.state.option4}
+               series1_bar = {this.state.series1_bar}
+               series2_line = {this.state.series2_line}
+               series3_area = {this.state.series3_area}
+               series4_line = {this.state.series4_line}
+          />             
         </>
     )
 }
