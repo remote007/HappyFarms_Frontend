@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import Chart from "react-apexcharts";
 
@@ -7,31 +8,25 @@ class ChartSection extends Component {
 
     this.state = {
       options: {
-        chart: {
-          id: "basic-bar"
-        // id : "line"
-        },
-        xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+        theme: {
+          palette: 'palette2' 
         }
       },
       series: [
-        {
-          name: "series-1",
-          data: [30, 40, 45, 50, 49, 60, 70, 91]
-        }
-      ]
+        
+      ],
+      type : ""
     };
   }
-
   render() {
     return (
       <div className="app">
         <div className="row">
           <div className="mixed-chart">
             <Chart
-              options={this.state.options}
-              series={this.state.series}
+              palette={this.state.palette}
+              options={this.props.option}
+              series={this.props.series}
               type={this.props.type}
               width="500"
             />
