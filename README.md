@@ -4,5 +4,5 @@
 4. Run the container.
 
 Points to remember : 
-First , run the backend and cities like Paris , London and Tokyo.
-On the dashboard select the cities to view data.
+a. First , run the backend and enter cities like Paris , London and Tokyo.
+b. On the dashboard select the cities to view data.
