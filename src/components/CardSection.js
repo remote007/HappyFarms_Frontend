@@ -35,16 +35,16 @@ export class CardSection extends Component {
                         <div className="card-body">
                             <h6 className="card-title" style={{ fontFamily: 'NHaasGroteskDSPro-65Md' }}>Sulphur Dioxide</h6>
                             <p className="card-text fw-bold fs-5" style={{ color: "#fcdf03" }}>
-                            <ChartSection type="area" series={this.props.series3_pie} option={this.props.option3}   />
+                            <ChartSection type="area" series={this.props.series3_area} option={this.props.option3}   />
                             </p>
                         </div>
                     </div>
                     <div className="card text-white text-center  m-3"
                         style={{ width: "38rem", backgroundColor: "rgb(43, 43, 43)", marginTop: "0px !important" }}>
                         <div className="card-body">
-                            <h6 className="card-title" style={{ fontFamily: 'NHaasGroteskDSPro-65Md' }}>Add New City</h6>
+                            <h6 className="card-title" style={{ fontFamily: 'NHaasGroteskDSPro-65Md' }}></h6>
                             <p className="card-text fw-bold fs-5" style={{ color: "#fcdf03" }} >
-                               Click Here
+                            <ChartSection type="area" series = {this.props.series4_line} option={this.props.option4}/> 
                             </p>
                         </div>
                     </div>
